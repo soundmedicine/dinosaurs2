@@ -7,7 +7,7 @@ export default class Profiles extends Component {
         super(props)
         this.state = {dinosaurs: []}
 
-        // this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount() {
@@ -17,28 +17,29 @@ export default class Profiles extends Component {
             dinosaurs.forEach(dinosaur => {
                 dinosaur.showSkills = false
             })
+            console.log(dinosaurs)
             this.setState({dinosaurs})
         })
     }
 
-    // handleClick() {
-    //     this.setState(prevState => ({
-    //         {dinosaur.showSkills = true}
-    //     }))
-    // }
+    handleClick(idx) {
+        const newState = JSON.parse(JSON.stringify(this.state))
+        newState.dinosaurs[idx].showSkills = !newState.dinosaurs[idx].showSkills
+        this.setState(newState)
+    }
 
     render() {
         let dinosaurs = this.state.dinosaurs
         return (
             <ul id="profiles">
-                {dinosaurs.map(dinosaur => {
+                {dinosaurs.map((dinosaur, idx) => {
                     return <li key={dinosaur.name}>
-                                <div className="profile-card">
+                                <div className="profile-card" onClick={() => this.handleClick(idx)}>
                                     <header className="profile-header">
                                         <img src={dinosaur.image} alt=""/>
                                         <h2>{dinosaur.name}</h2>
                                     </header>
-                                    <Skills />
+                                    <Skills dinosaur = {dinosaur}/>
                                 </div>
                             </li>
                 })}
