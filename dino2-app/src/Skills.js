@@ -15,11 +15,13 @@ export default class Skills extends Component {
     render() {
         let dinosaurs = this.state.dinosaurs
         return (
-            <section className="skills-container">
+            <section className={`skills-container ${this.props.showSkills ? '' : 'hidden'}`}>
                 <h4>Skills</h4>
                 <ul className="skills-list">
                 {dinosaurs.map(dinosaur => {
-                    <li>{dinosaur.skills}</li>
+                    return dinosaur.skills.map(skill => {
+                        return <li>{skill}</li>
+                    })
                 })}
                 </ul>
             </section>

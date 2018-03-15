@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './App.css'
 import Header from './Header'
 import Profiles from './Profiles'
-import Skills from './Skills'
+// import Skills from './Skills'
 import Footer from './Footer'
 
 export default class App extends Component {
     render() {
         return (
-            <body>
+            <div>
                 <Header />
                 <main>
                     <section id="profiles-container">
@@ -18,7 +18,7 @@ export default class App extends Component {
                     
                     </section>
                 </main>
-            </body>
+            </div>
         )
     }
 }
